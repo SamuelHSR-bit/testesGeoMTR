@@ -1,0 +1,18 @@
+GeoMTR — versão revisada (protótipo acadêmico)
+
+COMO TESTAR LOCALMENTE
+1. Extraia TODOS os arquivos do ZIP para uma mesma pasta.
+2. Abra index.html para iniciar pela tela de login.
+3. Para testar páginas diretamente, mantenha todos os arquivos CSS e JS na mesma pasta.
+4. Para publicar no Netlify, arraste o conteúdo extraído (ou o ZIP) para a área de deploy manual. O index.html está na raiz do pacote.
+
+ALTERAÇÕES DESTA VERSÃO
+- Política de Privacidade e Termos de Uso em modal compartilhado nos rodapés.
+- Ícones SVG nos quatro indicadores das páginas de relatórios.
+- Ajustes responsivos dos indicadores de relatórios com breakpoint em 900px, 600px e 360px.
+- Caminhos locais de CSS/JS padronizados para funcionar com os arquivos extraídos e no Netlify.
+
+OBSERVAÇÕES
+- Projeto demonstrativo sem banco de dados.
+- Nomes, indicadores, setores, contatos e registros podem ser fictícios.
+- A política e os termos são textos iniciais para o protótipo; devem ser revisados se o sistema passar a tratar dados reais.

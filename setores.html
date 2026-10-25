@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoMTR | Setores</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <span>Geo</span>MTR<small>GESTÃO DE ÁREAS DE MINERAÇÃO</small>
+      </div>
+      <nav>
+        <a href="dashboard.html" class="nav-item"
+          ><span class="icone">🎛️</span>Dashboard</a
+        ><a href="setores.html" class="nav-item ativo" aria-current="page"
+          ><span class="icone">📍</span>Setores</a
+        ><a href="operacoes.html" class="nav-item"
+          ><span class="icone">⛏️</span>Operações gerais</a
+        ><a href="relatorios.html" class="nav-item"
+          ><span class="icone">📊</span>Meus Relatórios</a
+        >
+      </nav>
+      <div class="suporte-sidebar">
+        <strong>Suporte</strong>
+        <p>Precisa de ajuda?</p>
+        <button onclick="abrirSuporte()">Contatar administrador</button>
+      </div>
+    </aside>
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+    <main class="conteudo">
+      <header class="topbar">
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          onclick="toggleSidebar()"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <div class="header-identificacao"><small>GESTÃO TERRITORIAL / MONITORAMENTO</small><strong>Setores operacionais</strong></div>
+        <div class="topbar-direita">
+          <div class="status"><span></span>SISTEMA ONLINE</div>
+          <button
+            class="perfil-btn"
+            onclick="togglePerfil()"
+            aria-label="Abrir menu do perfil"
+          >
+            <div class="avatar">SO</div>
+          </button>
+          <div class="perfil-menu" id="perfilMenu">
+            <div class="perfil-cabecalho">
+              <div class="avatar grande">SO</div>
+              <div><strong>Samuel</strong><span>Geólogo</span></div>
+            </div>
+            <hr />
+            <button type="button" onclick="abrirPerfil()">Meu perfil</button>
+            <hr />
+            <button class="sair" onclick="sairSistema()">
+              ↪ Sair do sistema
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="setores-page">
+        <section class="setores-intro">
+          <div>
+            <p class="mini-titulo">GESTÃO TERRITORIAL / MONITORAMENTO</p>
+            <h1>Setores de mineração</h1>
+            <p>
+              Visualize a distribuição dos setores, acompanhe avaliações
+              técnicas e consulte a condição de cada área antes de planejar
+              novas atividades. O mapa abaixo é esquemático e serve para
+              visualização esquemática; as formas não representam coordenadas geográficas
+              reais.
+            </p>
+          </div>
+        </section>
+        <section class="setores-kpis">
+          <article class="setor-kpi">
+            <small>Setores cadastrados</small><strong>18</strong
+            ><span>Áreas monitoradas</span>
+          </article>
+          <article class="setor-kpi">
+            <small>Avaliações técnicas</small><strong>42</strong
+            ><span>Registros cadastrados</span>
+          </article>
+          <article class="setor-kpi">
+            <small>Áreas aptas / favoráveis</small><strong>10</strong
+            ><span>Requerem validação técnica</span>
+          </article>
+          <article class="setor-kpi">
+            <small>Em análise / atenção</small><strong>8</strong
+            ><span>Necessitam de acompanhamento</span>
+          </article>
+        </section>
+        <section class="setores-layout">
+          <article class="setor-panel mapa-painel" id="mapaPainel">
+            <div class="setor-panel-head">
+              <div>
+                <h2>Mapa de Setores</h2>
+                <p>
+                  Situação atual das áreas monitoradas. Selecione um setor para
+                  consultar os detalhes.
+                </p>
+              </div>
+              <button
+                class="botao-principal"
+                type="button"
+                onclick="expandirMapa()"
+              >
+                ⛶ Expandir mapa
+              </button>
+            </div>
+            <div class="mapa" id="mapaSetoresViewport">
+              <div class="grade-mapa"></div>
+              <button
+                class="setor setor-verde setor-1"
+                type="button"
+                onclick="detalheSetor('ST-01')"
+                aria-label="Consultar setor ST-01"
+              >
+                ST-01
+              </button>
+              <button
+                class="setor setor-azul setor-2"
+                type="button"
+                onclick="detalheSetor('ST-02')"
+                aria-label="Consultar setor ST-02"
+              >
+                ST-02
+              </button>
+              <button
+                class="setor setor-laranja setor-3"
+                type="button"
+                onclick="detalheSetor('ST-03')"
+                aria-label="Consultar setor ST-03"
+              >
+                ST-03
+              </button>
+              <button
+                class="setor setor-vermelho setor-4"
+                type="button"
+                onclick="detalheSetor('ST-04')"
+                aria-label="Consultar setor ST-04"
+              >
+                ST-04
+              </button>
+              <button
+                class="setor setor-cinza setor-5"
+                type="button"
+                onclick="detalheSetor('ST-05')"
+                aria-label="Consultar setor ST-05"
+              >
+                ST-05
+              </button>
+              <div class="legenda">
+                <div><span class="verde"></span>Mariana</div>
+                <div><span class="azul"></span>Serra Azul</div>
+                <div><span class="laranja"></span>Vale Central</div>
+                <div><span class="vermelho"></span>Campo Sul</div>
+                <div><span class="cinza"></span>Serra Norte</div>
+              </div>
+            </div>
+            <p class="setor-mapa-note">
+              Mapa esquemático. As formas representam setores
+              fictícios e não correspondem a limites geográficos oficiais.
+            </p>
+          </article>
+          <aside class="setor-panel">
+            <div class="setor-panel-head">
+              <div>
+                <h2>Setores em destaque</h2>
+                <p>Consulte rapidamente a situação das áreas.</p>
+              </div>
+            </div>
+            <div class="setor-destaque" id="setorDestaques">
+              <div class="setor-destaque-item">
+                <span class="setor-color" style="background: #c96a5f"></span>
+                <div>
+                  <strong>ST-04 • Campo Sul</strong
+                  ><small>Alta atenção · 6 avaliações · 2 operações</small>
+                </div>
+                <button onclick="detalheSetor('ST-04')">Ver detalhes</button>
+              </div>
+              <div class="setor-destaque-item">
+                <span class="setor-color" style="background: #dba34b"></span>
+                <div>
+                  <strong>ST-03 • Vale Central</strong
+                  ><small>Atenção moderada · 8 avaliações · 1 operação</small>
+                </div>
+                <button onclick="detalheSetor('ST-03')">Ver detalhes</button>
+              </div>
+              <div class="setor-destaque-item">
+                <span class="setor-color" style="background: #a9b2ad"></span>
+                <div>
+                  <strong>ST-05 • Serra Norte</strong
+                  ><small>Em análise · 3 avaliações · 0 operações</small>
+                </div>
+                <button onclick="detalheSetor('ST-05')">Ver detalhes</button>
+              </div>
+              <div class="setor-destaque-item">
+                <span class="setor-color" style="background: #6ba579"></span>
+                <div>
+                  <strong>ST-01 • Mariana</strong
+                  ><small>Favorável* · 10 avaliações · 3 operações</small>
+                </div>
+                <button onclick="detalheSetor('ST-01')">Ver detalhes</button>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="setor-panel" style="margin-top: 20px">
+          <div class="setor-panel-head">
+            <div>
+              <h2>Todos os setores</h2>
+              <p>
+                Resumo de avaliações, operações registradas e condição atual.
+              </p>
+            </div>
+          </div>
+          <div class="setor-tabela-top">
+            <span class="mini-titulo" id="contadorSetores"
+              >18 REGISTROS NO SISTEMA</span
+            >
+            <div class="setor-filtros">
+              <input
+                id="buscaSetor"
+                type="search"
+                placeholder="Buscar código ou nome…"
+                aria-label="Buscar setor"
+              /><select id="filtroSituacao" aria-label="Filtrar por situação">
+                <option value="">Todas as situações</option>
+                <option>Favorável</option>
+                <option>Atenção moderada</option>
+                <option>Atenção elevada</option>
+                <option>Em análise</option>
+                <option>Baixa atividade</option>
+              </select>
+            </div>
+          </div>
+          <div class="setores-tabela-wrap">
+            <table class="setores-tabela">
+              <thead>
+                <tr>
+                  <th>Setor</th>
+                  <th>Mineral de interesse</th>
+                  <th>Avaliações</th>
+                  <th>Operações</th>
+                  <th>Área explorada</th>
+                  <th>Situação técnica</th>
+                  <th>Última avaliação</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaSetores"></tbody>
+            </table>
+          </div>
+          <p class="setor-mapa-note">
+            Os dados apresentados devem ser conferidos com os registros técnicos oficiais antes de orientar decisões. Não representam
+            recomendações reais de mineração.
+          </p>
+        </section>
+      </div>
+      <footer>
+        <div class="footer-logo">
+          <strong>Geo<span>MTR</span></strong
+          ><small>Gestão de Áreas de Mineração</small>
+        </div>
+        <div>
+          <p>© 2026 GeoMTR. Todos os direitos reservados.</p>
+          <small>Versão 0.7 • Ac</small>
+        </div>
+        <div class="footer-links">
+          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="terms">Termos de Uso</button>
+          <button type="button" onclick="abrirSuporte()">Suporte</button>
+        </div>
+        <div class="endereco">
+          <strong>Sede Administrativa</strong>
+          <p>
+            Av. dos Minerais, 1000<br />Distrito Industrial<br />Nova Esperança
+            - MG
+          </p>
+        </div>
+      </footer>
+    </main>
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="fecharModalFundo(event)"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitulo"
+    >
+      <div class="modal" role="document">
+        <button
+          class="modal-fechar"
+          type="button"
+          onclick="fecharModal()"
+          aria-label="Fechar janela"
+        >
+          ×
+        </button>
+        <p class="mini-titulo">GEOMTR • ÁREA DO USUÁRIO</p>
+        <h2 id="modalTitulo">Informações</h2>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+    <script src="./dashboard.js"></script>
+    <script>
+      const setoresDados = [
+        {
+          codigo: "ST-01",
+          nome: "Mariana",
+          mineral: "Terras raras",
+          avaliacoes: 10,
+          operacoes: 3,
+          explorado: 68,
+          situacao: "Favorável",
+          status: "status-bom",
+          data: "01/10/2026",
+          responsavel: "Samuel Oliveira",
+          area: "2,10 km²",
+          nota: "Resultados preliminares consistentes; manter acompanhamento periódico.",
+        },
+        {
+          codigo: "ST-02",
+          nome: "Serra Azul",
+          mineral: "Lítio",
+          avaliacoes: 7,
+          operacoes: 2,
+          explorado: 42,
+          situacao: "Baixa atividade",
+          status: "status-bom",
+          data: "28/09/2026",
+          responsavel: "Ana Martins",
+          area: "1,45 km²",
+          nota: "Atividade reduzida; novos dados são necessários para atualizar o parecer.",
+        },
+        {
+          codigo: "ST-03",
+          nome: "Vale Central",
+          mineral: "Nióbio",
+          avaliacoes: 8,
+          operacoes: 1,
+          explorado: 55,
+          situacao: "Atenção moderada",
+          status: "status-moderado",
+          data: "01/10/2026",
+          responsavel: "Samuel Oliveira",
+          area: "1,80 km²",
+          nota: "Requer avaliação complementar antes de ampliar as operações.",
+        },
+        {
+          codigo: "ST-04",
+          nome: "Campo Sul",
+          mineral: "Grafita",
+          avaliacoes: 5,
+          operacoes: 1,
+          explorado: 32,
+          situacao: "Favorável",
+          status: "status-bom",
+          data: "22/09/2026",
+          responsavel: "Carlos Souza",
+          area: "1,25 km²",
+          nota: "Indicadores técnicos favoráveis; seguir protocolo técnico.",
+        },
+        {
+          codigo: "ST-05",
+          nome: "Serra Norte",
+          mineral: "Terras raras",
+          avaliacoes: 6,
+          operacoes: 2,
+          explorado: 76,
+          situacao: "Atenção elevada",
+          status: "status-ruim",
+          data: "30/09/2026",
+          responsavel: "Fernanda Lima",
+          area: "2,60 km²",
+          nota: "Há fatores que exigem investigação detalhada. Não interpretar como autorização de extração.",
+        },
+        {
+          codigo: "ST-06",
+          nome: "Campo Leste",
+          mineral: "Cobre",
+          avaliacoes: 3,
+          operacoes: 0,
+          explorado: 12,
+          situacao: "Em análise",
+          status: "status-analise",
+          data: "26/09/2026",
+          responsavel: "Ana Martins",
+          area: "0,95 km²",
+          nota: "Dados insuficientes para classificar a condição do setor.",
+        },
+        {
+          codigo: "ST-07",
+          nome: "Morro Verde",
+          mineral: "Lítio",
+          avaliacoes: 4,
+          operacoes: 1,
+          explorado: 28,
+          situacao: "Em análise",
+          status: "status-analise",
+          data: "19/09/2026",
+          responsavel: "Carlos Souza",
+          area: "0,88 km²",
+          nota: "Manter coleta e revisão de dados.",
+        },
+      ];
+      function renderizarSetores() {
+        const busca = (
+          document.getElementById("buscaSetor")?.value || ""
+        ).toLowerCase();
+        const situacao = document.getElementById("filtroSituacao")?.value || "";
+        const lista = setoresDados.filter(
+          (s) =>
+            (s.codigo + " " + s.nome + " " + s.mineral)
+              .toLowerCase()
+              .includes(busca) &&
+            (!situacao || s.situacao === situacao),
+        );
+        document.getElementById("contadorSetores").textContent =
+          `${lista.length} REGISTRO(S) EXIBIDO(S)`;
+        document.getElementById("tabelaSetores").innerHTML =
+          lista
+            .map(
+              (s) =>
+                `<tr><td><span class="setor-code">${s.codigo}</span><br>${s.nome}</td><td>${s.mineral}</td><td>${s.avaliacoes}</td><td>${s.operacoes}</td><td>${s.explorado}%<div class="setor-progresso"><span style="width:${s.explorado}%"></span></div></td><td><span class="setor-status ${s.status}">${s.situacao}</span></td><td>${s.data}</td></tr>`,
+            )
+            .join("") ||
+          '<tr><td colspan="7">Nenhum setor corresponde aos filtros.</td></tr>';
+      }
+      function detalheSetor(codigo) {
+        const s = setoresDados.find((x) => x.codigo === codigo);
+        if (!s) return;
+        abrirModal(
+          `${s.codigo} — ${s.nome}`,
+          `<div class="geo-info-grid"><div><small>Situação técnica</small><strong>${s.situacao}</strong><span>Classificação técnica</span></div><div><small>Área total</small><strong>${s.area}</strong><span>Área cadastrada</span></div><div><small>Avaliações</small><strong>${s.avaliacoes}</strong><span>Registros de avaliação</span></div><div><small>Operações</small><strong>${s.operacoes}</strong><span>Registros operacionais</span></div><div><small>Área explorada</small><strong>${s.explorado}%</strong><span>Percentual registrado</span></div><div><small>Última avaliação</small><strong>${s.data}</strong><span>Responsável: ${s.responsavel}</span></div></div><div class="geo-notice"><strong>Observação técnica</strong><br>${s.nota}<br><br>Esta informação é fictícia para fins acadêmicos e não substitui laudo geológico, licenciamento ou análise ambiental.</div>`,
+        );
+      }
+      let escalaMapa = 1;
+      function zoomMapa(delta) {
+        escalaMapa = Math.max(1, Math.min(2.2, escalaMapa + delta));
+        const mapa = document.getElementById("mapaSetoresViewport");
+        if (mapa) mapa.style.transform = `scale(${escalaMapa})`;
+      }
+      function resetZoomMapa() {
+        escalaMapa = 1;
+        const mapa = document.getElementById("mapaSetoresViewport");
+        if (mapa) mapa.style.transform = "scale(1)";
+      }
+      document
+        .getElementById("buscaSetor")
+        .addEventListener("input", renderizarSetores);
+      document
+        .getElementById("filtroSituacao")
+        .addEventListener("change", renderizarSetores);
+      renderizarSetores();
+    </script>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+  
+    <div class="legal-overlay" id="legalOverlay" hidden>
+      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+        <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
+        <h2 id="legalTitle">Política de Privacidade</h2>
+        <p class="legal-updated">Atualizado em outubro de 2026</p>
+        <div class="legal-content" id="legalContent"></div>
+        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+      </section>
+    </div>
+    <script src="./legal.js"></script>
+  </body>
+</html>

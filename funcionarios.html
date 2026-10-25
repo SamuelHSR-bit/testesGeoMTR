@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoMTR | Funcionários</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./funcionarios.css" />
+  </head>
+  <body class="pagina-funcionarios">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        Geo<span>MTR</span>
+        <small>GESTÃO DE ÁREAS DE MINERAÇÃO</small>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="./dashboard_adm.html">
+          <span class="icone">🎛️</span><span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="./setores.html">
+          <span class="icone">📍</span><span>Setores</span>
+        </a>
+        <a class="nav-item" href="./operacoes-adm.html">
+          <span class="icone">⛏️</span><span>Operações gerais</span>
+        </a>
+        <a class="nav-item" href="./relatorios-gerais.html">
+          <span class="icone">📊</span><span>Relatórios gerais</span>
+        </a>
+        <a
+          class="nav-item ativo"
+          href="./funcionarios.html"
+          aria-current="page"
+        >
+          <span class="icone">👤</span><span>Funcionários</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-rodape">
+        <div class="suporte-sidebar">
+          <strong>Suporte</strong>
+          <p>Precisa de ajuda?</p>
+          <button onclick="abrirSuporte()">Contatar administrador</button>
+        </div>
+      </div>
+    </aside>
+
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <main class="conteudo">
+      <header class="topbar">
+        <div class="topbar-esquerda">
+          <button
+            class="menu-btn"
+            type="button"
+            onclick="toggleSidebar()"
+            aria-label="Abrir menu"
+          >
+            ☰
+          </button>
+          <div class="header-identificacao"><small>GESTÃO ADMINISTRATIVA / ACESSOS</small><strong>Gestão de funcionários</strong></div>
+        </div>
+
+        <div class="topbar-direita">
+          <div class="status">
+            <span></span>
+            SISTEMA ONLINE
+          </div>
+
+          <button class="perfil-btn" onclick="togglePerfil()">
+            <div class="avatar">AD</div>
+          </button>
+
+          <div class="perfil-menu" id="perfilMenu">
+            <div class="perfil-cabecalho">
+              <div class="avatar grande">AD</div>
+              <div>
+                <strong>Administrador</strong>
+                <span>TI / Gestão</span>
+              </div>
+            </div>
+            <hr />
+            <button type="button" onclick="abrirPerfil()">Meu perfil</button>
+            <hr />
+            <button class="sair" onclick="sairSistema()">
+              ↪ Sair do sistema
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="funcionarios-intro">
+        <div>
+          <p class="eyebrow">CONTROLE DE ACESSO</p>
+          <h2>Gestão de funcionários</h2>
+          <p class="intro-texto">
+            Cadastre usuários, defina o perfil de acesso e acompanhe as contas
+            vinculadas ao GeoMTR.
+          </p>
+        </div>
+        <button class="botao-principal" type="button" id="abrirCadastro">
+          <span aria-hidden="true">＋</span> Novo funcionário
+        </button>
+      </section>
+
+      <section class="func-stats" aria-label="Resumo de usuários">
+        <article class="func-stat-card">
+          <div class="stat-icone verde">👤</div>
+          <div>
+            <span>Total de usuários</span><strong id="totalUsuarios">0</strong
+            ><small>Contas cadastradas</small>
+          </div>
+        </article>
+        <article class="func-stat-card">
+          <div class="stat-icone escuro">🔑</div>
+          <div>
+            <span>Administradores</span><strong id="totalAdmins">0</strong
+            ><small>Acesso administrativo</small>
+          </div>
+        </article>
+        <article class="func-stat-card">
+          <div class="stat-icone claro">⛏</div>
+          <div>
+            <span>Funcionários</span><strong id="totalFuncionarios">0</strong
+            ><small>Equipe técnica</small>
+          </div>
+        </article>
+        <article class="func-stat-card">
+          <div class="stat-icone cinza">⊘</div>
+          <div>
+            <span>Contas inativas</span><strong id="totalInativos">0</strong
+            ><small>Acesso desativado</small>
+          </div>
+        </article>
+      </section>
+
+      <section class="func-lista painel">
+        <div class="func-lista-cabecalho">
+          <div>
+            <h3>Diretório de usuários</h3>
+            <p>Consulte e gerencie as contas de acesso ao sistema.</p>
+          </div>
+          
+        </div>
+
+        <div class="func-filtros">
+          <label class="func-busca">
+            <span aria-hidden="true">⌕</span>
+            <input
+              id="buscaFuncionario"
+              type="search"
+              placeholder="Buscar por nome ou RA..."
+              autocomplete="off"
+            />
+          </label>
+          <select id="filtroPerfil" aria-label="Filtrar por perfil">
+            <option value="todos">Todos os perfis</option>
+            <option value="Administrador">Administradores</option>
+            <option value="Funcionário">Funcionários</option>
+          </select>
+          <select id="filtroStatus" aria-label="Filtrar por status">
+            <option value="todos">Todos os status</option>
+            <option value="Ativo">Ativos</option>
+            <option value="Inativo">Inativos</option>
+          </select>
+        </div>
+
+        <div class="tabela-responsiva">
+          <table class="tabela-funcionarios">
+            <thead>
+              <tr>
+                <th>Usuário</th>
+                <th>RA / Login</th>
+                <th>Perfil</th>
+                <th>Cadastro</th>
+                <th>Status</th>
+                <th class="coluna-acoes">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaFuncionarios"></tbody>
+          </table>
+          <div class="estado-vazio" id="estadoVazio" hidden>
+            <span>⌕</span>
+            <strong>Nenhum usuário encontrado</strong>
+            <p>Tente mudar os filtros ou cadastrar um novo usuário.</p>
+          </div>
+        </div>
+        <div class="func-lista-rodape">
+          <span id="contadorResultados">Exibindo 0 usuários</span>
+          <span>Cadastro e persistência sujeitos à configuração do ambiente de produção.</span>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-logo">
+          <strong>Geo<span>MTR</span></strong>
+          <small>Gestão de Áreas de Mineração</small>
+        </div>
+        <div>
+          <p>© 2026 GeoMTR. Todos os direitos reservados.</p>
+          <small>Versão 0.5 • Ac</small>
+        </div>
+        <div class="footer-links">
+          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="terms">Termos de Uso</button>
+          <button type="button" onclick="abrirSuporte()">Suporte</button>
+        </div>
+        <div class="endereco">
+          <strong>Sede Administrativa</strong>
+          <p>
+            Av. dos Minerais, 1000<br />Distrito Industrial<br />Nova Esperança
+            - MG
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <div
+      class="func-modal-overlay"
+      id="modalFuncionario"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalFuncionarioTitulo"
+      hidden
+    >
+      <section class="func-modal">
+        <div class="func-modal-topo">
+          <div>
+            <p class="eyebrow">GESTÃO DE ACESSO</p>
+            <h2 id="modalFuncionarioTitulo">Cadastrar funcionário</h2>
+            <p>Preencha os dados para cadastrar um novo usuário.</p>
+          </div>
+          <button
+            class="func-modal-fechar"
+            id="fecharCadastro"
+            type="button"
+            aria-label="Fechar"
+          >
+            ×
+          </button>
+        </div>
+
+        <form id="formFuncionario">
+          <div class="campo-form">
+            <label for="nomeFuncionario">Nome completo</label>
+            <input
+              id="nomeFuncionario"
+              name="nome"
+              type="text"
+              placeholder="Ex.: Mariana Costa"
+              required
+              maxlength="90"
+            />
+          </div>
+          <div class="campo-form">
+            <label for="cargoFuncionario">Cargo / função</label>
+            <input
+              id="cargoFuncionario"
+              name="cargo"
+              type="text"
+              placeholder="Ex.: Geólogo(a)"
+              required
+              maxlength="70"
+            />
+          </div>
+          <div class="campo-form">
+            <label for="perfilFuncionario">Perfil de acesso</label>
+            <select id="perfilFuncionario" name="perfil" required>
+              <option value="Funcionário">Funcionário / Geólogo</option>
+              <option value="Administrador">Administrador</option>
+            </select>
+          </div>
+          <div class="campo-form">
+            <label for="senhaTemporaria">Senha temporária</label>
+            <input
+              id="senhaTemporaria"
+              name="senha"
+              type="password"
+              placeholder="Crie uma senha temporária"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="preview-ra" id="previewRA">
+            <span>Próximo RA sugerido</span>
+            <strong>F0001</strong>
+            <small>Será atribuído ao confirmar o cadastro.</small>
+          </div>
+          <p class="form-erro" id="erroCadastro" role="alert"></p>
+          <div class="func-modal-acoes">
+            <button
+              class="botao-secundario"
+              id="cancelarCadastro"
+              type="button"
+            >
+              Cancelar
+            </button>
+            <button class="botao-principal" type="submit">
+              Criar usuário <span>→</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div
+      class="func-toast"
+      id="funcToast"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+
+    <div class="modal-overlay" id="modalOverlay" onclick="fecharModalFundo(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="modal" role="document">
+        <button class="modal-fechar" type="button" onclick="fecharModal()" aria-label="Fechar janela">×</button>
+        <p class="mini-titulo">GEOMTR • ÁREA DO USUÁRIO</p>
+        <h2 id="modalTitulo">Informações</h2>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+    <script src="./dashboard.js"></script>
+    <script src="./funcionarios.js"></script>
+
+    <!-- VLibras: recurso de acessibilidade em Libras -->
+    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  
+    <div class="legal-overlay" id="legalOverlay" hidden>
+      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+        <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
+        <h2 id="legalTitle">Política de Privacidade</h2>
+        <p class="legal-updated">Atualizado em outubro de 2026</p>
+        <div class="legal-content" id="legalContent"></div>
+        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+      </section>
+    </div>
+    <script src="./legal.js"></script>
+  </body>
+</html>

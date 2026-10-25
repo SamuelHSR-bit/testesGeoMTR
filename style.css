@@ -1,0 +1,500 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0d1210;
+  color: #e8ece9;
+}
+
+/* 
+   ESTRUTURA PRINCIPAL
+ */
+
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+}
+
+/*L.E*/
+
+.painel-info {
+  width: 55%;
+  min-height: 100vh;
+
+  padding: 65px 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(13, 22, 17, 0.92), rgba(13, 22, 17, 0.97)),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 49px,
+      rgba(255, 255, 255, 0.025) 50px
+    );
+
+  border-right: 1px solid #29332d;
+}
+
+.painel-info::after {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  border: 1px solid rgba(96, 151, 111, 0.12);
+  border-radius: 50%;
+
+  right: -180px;
+  bottom: -180px;
+
+  box-shadow:
+    0 0 0 70px rgba(96, 151, 111, 0.025),
+    0 0 0 140px rgba(96, 151, 111, 0.015);
+}
+
+/* 
+   LOGO
+ */
+
+.logo {
+  position: absolute;
+
+  top: 45px;
+  left: 80px;
+
+  font-size: 25px;
+  font-weight: bold;
+
+  letter-spacing: 4px;
+
+  color: #ffffff;
+}
+
+.logo span {
+  color: #78a982;
+}
+
+/* 
+   TEXTO PRINCIPAL
+ */
+
+.painel-info h1 {
+  max-width: 650px;
+
+  font-size: 48px;
+  line-height: 1.1;
+
+  letter-spacing: -1px;
+
+  margin-bottom: 25px;
+
+  color: #f4f7f5;
+}
+
+.descricao {
+  max-width: 550px;
+
+  color: #8f9d94;
+
+  line-height: 1.7;
+
+  font-size: 15px;
+}
+
+.linha {
+  width: 100%;
+  max-width: 600px;
+
+  height: 1px;
+
+  background: #29352e;
+
+  margin: 45px 0 30px;
+}
+
+/* 
+   INFORMAÇÕES
+ */
+
+.informacoes {
+  display: flex;
+  gap: 45px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.numero {
+  font-family: monospace;
+
+  font-size: 12px;
+
+  color: #6c9d77;
+
+  border: 1px solid #33473a;
+
+  padding: 5px;
+}
+
+.info strong {
+  display: block;
+
+  font-size: 13px;
+
+  color: #d8ded9;
+
+  margin-bottom: 4px;
+}
+
+.info p {
+  font-size: 11px;
+
+  color: #68756c;
+}
+
+/* 
+   ÁREA DE LOGIN
+ */
+
+.area-login {
+  width: 45%;
+  min-height: 100vh;
+
+  background: #151a17;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+/* 
+   STATUS
+ */
+
+.status {
+  position: absolute;
+
+  top: 40px;
+  right: 45px;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  color: #6f7c73;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.status-bolinha {
+  width: 7px;
+  height: 7px;
+
+  background: #69a976;
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 8px rgba(105, 169, 118, 0.7);
+}
+
+/* 
+   CAIXA LOGIN
+ */
+
+.login-box {
+  width: 420px;
+}
+
+.identificacao {
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  color: #6c9d77;
+
+  margin-bottom: 15px;
+}
+
+.login-box h2 {
+  font-size: 35px;
+
+  color: #f0f3f1;
+
+  margin-bottom: 10px;
+}
+
+.login-descricao {
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  color: #78847c;
+
+  margin-bottom: 40px;
+}
+
+/* 
+   CAMPOS
+ */
+
+.campo {
+  margin-bottom: 24px;
+}
+
+.campo label {
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  color: #8b978f;
+
+  margin-bottom: 9px;
+}
+
+.senha-label {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.senha-label span {
+  font-size: 8px;
+
+  letter-spacing: 1px;
+
+  color: #566159;
+}
+
+.campo input {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 15px;
+
+  background: #101411;
+
+  color: #e8ece9;
+
+  border: 1px solid #303a33;
+
+  border-radius: 3px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+.campo input::placeholder {
+  color: #4f5952;
+}
+
+.campo input:focus {
+  border-color: #668d6f;
+
+  background: #121814;
+
+  box-shadow: 0 0 0 2px rgba(102, 141, 111, 0.08);
+}
+
+/* 
+   BOTÃO
+ */
+
+button {
+  width: 100%;
+
+  height: 52px;
+
+  margin-top: 8px;
+
+  padding: 0 18px;
+
+  border: 1px solid #688b70;
+  border-radius: 3px;
+
+  background: #3f6548;
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+button span {
+  font-size: 20px;
+}
+
+button:hover {
+  background: #4c7957;
+
+  border-color: #7aa685;
+
+  transform: translateY(-1px);
+}
+
+/* 
+   SUPORTE
+ */
+
+.separador {
+  width: 100%;
+  height: 1px;
+
+  background: #29312c;
+
+  margin: 35px 0 22px;
+}
+
+.suporte p {
+  font-size: 11px;
+
+  color: #88948c;
+
+  margin-bottom: 4px;
+}
+
+.suporte span {
+  font-size: 10px;
+
+  color: #58625b;
+}
+
+/* 
+   RODAPÉ
+ */
+
+footer {
+  position: absolute;
+
+  bottom: 30px;
+
+  width: 420px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-family: monospace;
+
+  font-size: 9px;
+
+  color: #505b53;
+}
+
+/* 
+   RESPONSIVIDADE
+ */
+
+@media (max-width: 900px) {
+  .painel-info {
+    display: none;
+  }
+
+  .area-login {
+    width: 100%;
+  }
+
+  .login-box {
+    width: 85%;
+    max-width: 420px;
+  }
+
+  footer {
+    width: 85%;
+    max-width: 420px;
+  }
+  #erroLogin {
+    color: #d96b62;
+    font-size: 11px;
+
+    margin-top: -10px;
+    margin-bottom: 15px;
+
+    min-height: 15px;
+  }
+}
+
+
+
+/* Documentos legais compartilhados */
+.legal-overlay[hidden] { display: none !important; }
+.legal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px; background: rgba(8, 20, 13, .68);
+  backdrop-filter: blur(4px);
+}
+.legal-modal {
+  position: relative; width: min(680px, 100%); max-height: min(82vh, 760px);
+  overflow: auto; padding: 30px; border-radius: 16px;
+  background: #fff; color: #182019; box-shadow: 0 24px 80px rgba(0,0,0,.25);
+}
+.legal-close {
+  position: absolute; top: 12px; right: 14px; width: 38px; height: 38px;
+  border: 0; border-radius: 9px; background: #f0f4f0; color: #183221;
+  font-size: 27px; line-height: 1; cursor: pointer;
+}
+.legal-eyebrow { margin: 0 42px 9px 0; color: #477957; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.legal-modal h2 { margin: 0 44px 7px 0; font-size: clamp(22px, 4vw, 28px); }
+.legal-updated { margin: 0 0 22px; color: #7a857c; font-size: 12px; }
+.legal-content { display: grid; gap: 14px; color: #455148; font-size: 13px; line-height: 1.75; }
+.legal-content p { margin: 0; }
+.legal-content strong { color: #182019; }
+.legal-actions { display: flex; justify-content: flex-end; margin-top: 24px; }
+.legal-actions button {
+  min-height: 42px; padding: 0 20px; border: 0; border-radius: 8px;
+  background: #477957; color: #fff; font: inherit; font-weight: 700; cursor: pointer;
+}
+body.legal-modal-open { overflow: hidden; }
+.login-footer { flex-wrap: wrap; gap: 12px; }
+.login-legal-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.login-legal-links button {
+  border: 0; padding: 0; background: transparent; color: inherit;
+  font: inherit; text-decoration: underline; cursor: pointer;
+}
+@media (max-width: 600px) {
+  .legal-overlay { padding: 10px; align-items: flex-end; }
+  .legal-modal { padding: 25px 20px 20px; max-height: 88vh; border-radius: 16px 16px 10px 10px; }
+  .legal-content { font-size: 12px; line-height: 1.65; }
+}

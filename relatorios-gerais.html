@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoMTR | Relatórios Gerais</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./relatorios.css" />
+  </head>
+
+  <body class="pagina-relatorios" data-perfil="admin">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        Geo<span>MTR</span>
+        <small>GESTÃO DE ÁREAS DE MINERAÇÃO</small>
+      </div>
+
+      <nav>
+        <a href="dashboard_adm.html" class="nav-item">
+          <span class="icone">🎛️</span>Dashboard
+        </a>
+        <a href="setores.html?perfil=admin" class="nav-item">
+          <span class="icone">📍</span>Setores
+        </a>
+        <a href="operacoes-adm.html" class="nav-item">
+          <span class="icone">⛏️</span>Operações gerais
+        </a>
+        <a href="relatorios-gerais.html" class="nav-item ativo">
+          <span class="icone">📊</span>Relatórios gerais
+        </a>
+        <a href="funcionarios.html" class="nav-item admin-item">
+          <span class="icone">👤</span>Funcionários
+        </a>
+      </nav>
+
+      <div class="suporte-sidebar">
+        <strong>Suporte</strong>
+        <p>Precisa de ajuda?</p>
+        <button onclick="abrirSuporte()">Contatar administrador</button>
+      </div>
+    </aside>
+
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <main class="conteudo" id="conteudo">
+      <header class="topbar">
+        <button
+          class="menu-btn"
+          type="button"
+          onclick="toggleSidebar()"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+        <div class="header-identificacao">
+          <small>GESTÃO ADMINISTRATIVA / RELATÓRIOS</small>
+          <strong>Relatórios gerais</strong>
+        </div>
+        <div class="topbar-direita">
+          <div class="status">
+            <span></span>
+            SISTEMA ONLINE
+          </div>
+
+          <button class="perfil-btn" onclick="togglePerfil()">
+            <div class="avatar">AD</div>
+          </button>
+
+          <div class="perfil-menu" id="perfilMenu">
+            <div class="perfil-cabecalho">
+              <div class="avatar grande">AD</div>
+              <div>
+                <strong>Administrador</strong>
+                <span>TI / Gestão</span>
+              </div>
+            </div>
+            <hr />
+            <button type="button" onclick="abrirPerfil()">Meu perfil</button>
+            <hr />
+            <button class="sair" onclick="sairSistema()">
+              ↪ Sair do sistema
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="relatorio-intro">
+        <div>
+          <p class="mini-titulo">GESTÃO • RELATÓRIOS</p>
+          <h2>Relatórios gerais</h2>
+          <p>Consulte e acompanhe as avaliações técnicas de toda a equipe.</p>
+        </div>
+
+        <button
+          class="exportar-botao"
+          type="button"
+          onclick="exportarRelatorios()"
+        >
+          ↓ Exportar CSV
+        </button>
+      </section>
+
+      <section class="relatorio-stats">
+        <article class="relatorio-stat">
+          <span class="relatorio-stat-icone" aria-hidden="true">📁</span>
+          <div class="relatorio-stat-conteudo">
+            <small class="relatorio-stat-titulo">Total de relatórios</small>
+            <strong id="totalRelatorios">6</strong>
+            <small>Relatórios registrados</small>
+          </div>
+        </article>
+
+        <article class="relatorio-stat">
+          <span class="relatorio-stat-icone" aria-hidden="true">✅</span>
+          <div class="relatorio-stat-conteudo">
+            <small class="relatorio-stat-titulo">Concluídos</small>
+            <strong id="totalConcluidos">3</strong>
+            <small>Avaliações finalizadas</small>
+          </div>
+        </article>
+
+        <article class="relatorio-stat">
+          <span class="relatorio-stat-icone" aria-hidden="true">🔄</span>
+          <div class="relatorio-stat-conteudo">
+            <small class="relatorio-stat-titulo">Em análise</small>
+            <strong id="totalAnalise">2</strong>
+            <small>Aguardando revisão</small>
+          </div>
+        </article>
+
+        <article class="relatorio-stat">
+          <span class="relatorio-stat-icone" aria-hidden="true">📝</span>
+          <div class="relatorio-stat-conteudo">
+            <small class="relatorio-stat-titulo">Rascunhos</small>
+            <strong id="totalRascunhos">1</strong>
+            <small>Não finalizados</small>
+          </div>
+        </article>
+      </section>
+
+      <section class="relatorio-painel">
+        <div class="relatorio-painel-topo">
+          <div>
+            <h3>Todos os relatórios</h3>
+            <p>Registros de avaliações e atividades técnicas.</p>
+          </div>
+          
+        </div>
+
+        <div class="relatorio-filtros">
+          <input
+            id="buscaRelatorio"
+            type="search"
+            placeholder="Buscar código, setor ou responsável..."
+          />
+          <select id="filtroStatus">
+            <option value="">Todos os status</option>
+            <option value="Concluído">Concluídos</option>
+            <option value="Em análise">Em análise</option>
+            <option value="Rascunho">Rascunhos</option>
+          </select>
+          <select id="filtroResponsavel">
+            <option value="">Todos os responsáveis</option>
+            <option value="Samuel Oliveira">Samuel Oliveira</option>
+            <option value="Carlos Mendes">Carlos Mendes</option>
+            <option value="Fernanda Lima">Fernanda Lima</option>
+            <option value="Mariana Costa">Mariana Costa</option>
+          </select>
+        </div>
+
+        <div class="relatorio-tabela-wrap">
+          <table class="relatorio-tabela">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Relatório</th>
+                <th>Setor</th>
+                <th>Responsável</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaRelatorios"></tbody>
+          </table>
+        </div>
+
+        <div class="relatorio-rodape-tabela" id="contadorRelatorios">
+          Exibindo relatórios
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-logo">
+          <strong>Geo<span>MTR</span></strong>
+          <small>Gestão de Áreas de Mineração</small>
+        </div>
+        <div>
+          <p>© 2026 GeoMTR. Todos os direitos reservados.</p>
+          <small>Versão 0.5 • Ac</small>
+        </div>
+        <div class="footer-links">
+          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="terms">Termos de Uso</button>
+          <button type="button" onclick="abrirSuporte()">Suporte</button>
+        </div>
+        <div class="endereco">
+          <strong>Sede Administrativa</strong>
+          <p>
+            Av. dos Minerais, 1000<br />Distrito Industrial<br />Nova Esperança
+            - MG
+          </p>
+        </div>
+      </footer>
+    </main>
+
+
+    <div class="modal-overlay" id="modalOverlay" onclick="fecharModalFundo(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="modal" role="document">
+        <button class="modal-fechar" type="button" onclick="fecharModal()" aria-label="Fechar janela">×</button>
+        <p class="mini-titulo">GEOMTR • ÁREA DO USUÁRIO</p>
+        <h2 id="modalTitulo">Informações</h2>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+    <script src="./dashboard.js"></script>
+    <script src="./relatorios.js"></script>
+
+    <!-- VLibras: recurso de acessibilidade em Libras -->
+    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  
+    <div class="legal-overlay" id="legalOverlay" hidden>
+      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+        <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
+        <h2 id="legalTitle">Política de Privacidade</h2>
+        <p class="legal-updated">Atualizado em outubro de 2026</p>
+        <div class="legal-content" id="legalContent"></div>
+        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+      </section>
+    </div>
+    <script src="./legal.js"></script>
+  </body>
+</html>

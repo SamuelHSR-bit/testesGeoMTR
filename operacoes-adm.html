@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoMTR | Operações Gerais</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./operacoes.css" />
+  </head>
+  <body class="pagina-operacoes" data-perfil="admin">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        Geo<span>MTR</span><small>GESTÃO DE ÁREAS DE MINERAÇÃO</small>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="./dashboard_adm.html"
+          ><span class="icone">🎛️</span>Dashboard</a
+        >
+        <a class="nav-item" href="./setores.html"
+          ><span class="icone">📍</span>Setores</a
+        >
+        <a
+          class="nav-item ativo"
+          href="./operacoes-adm.html"
+          aria-current="page"
+          ><span class="icone">⛏️</span>Operações gerais</a
+        >
+        <a class="nav-item" href="./relatorios-gerais.html"
+          ><span class="icone">📊</span>Relatórios gerais</a
+        >
+        <a class="nav-item admin-item" href="./funcionarios.html"
+          ><span class="icone">👤</span>Funcionários</a
+        >
+      </nav>
+      <div class="suporte-sidebar">
+        <strong>Suporte</strong>
+        <p>Precisa de ajuda?</p>
+        <button onclick="abrirSuporte()">Contatar administrador</button>
+      </div>
+    </aside>
+
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <main class="conteudo">
+      <header class="topbar">
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            onclick="toggleSidebar()"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            type="button"
+          >
+            ☰
+          </button>
+        <div class="header-identificacao">
+          <small>GESTÃO ADMINISTRATIVA / OPERAÇÕES</small>
+          <strong>Operações gerais</strong>
+        </div>
+        <div class="topbar-direita">
+          <div class="status">
+            <span></span>
+            SISTEMA ONLINE
+          </div>
+
+          <button class="perfil-btn" onclick="togglePerfil()">
+            <div class="avatar">AD</div>
+          </button>
+
+          <div class="perfil-menu" id="perfilMenu">
+            <div class="perfil-cabecalho">
+              <div class="avatar grande">AD</div>
+              <div>
+                <strong>Administrador</strong>
+                <span>TI / Gestão</span>
+              </div>
+            </div>
+            <hr />
+            <button type="button" onclick="abrirPerfil()">Meu perfil</button>
+            <hr />
+            <button class="sair" onclick="sairSistema()">
+              ↪ Sair do sistema
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="op-intro">
+        <div>
+          <p class="op-eyebrow">REGISTRO E ACOMPANHAMENTO</p>
+          <h2>Controle de operações minerais</h2>
+          <p>
+            Registre atividades realizadas nos setores e acompanhe empresas,
+            equipes, áreas exploradas e quantidades extraídas.
+          </p>
+        </div>
+        <button class="op-primary" id="novaOperacaoBtn">
+          ＋ Nova operação
+        </button>
+      </section>
+
+      <nav class="op-role-tabs" aria-label="Visão de operações">
+        <a class="ativo" href="./operacoes-adm.html">Visão do administrador</a>
+      </nav>
+
+      <section class="op-stats">
+        <article>
+          <span>⛏</span>
+          <div>
+            <small>Total de operações</small
+            ><strong id="totalOperacoes">0</strong
+            ><small>Registros cadastrados</small>
+          </div>
+        </article>
+        <article>
+          <span class="verde">▶</span>
+          <div>
+            <small>Em andamento</small><strong id="totalAndamento">0</strong
+            ><small>Atividades ativas</small>
+          </div>
+        </article>
+        <article>
+          <span class="laranja">◷</span>
+          <div>
+            <small>Planejadas</small><strong id="totalPlanejadas">0</strong
+            ><small>Aguardando início</small>
+          </div>
+        </article>
+        <article>
+          <span class="cinza">✓</span>
+          <div>
+            <small>Concluídas</small><strong id="totalConcluidas">0</strong
+            ><small>Atividades encerradas</small>
+          </div>
+        </article>
+      </section>
+
+      <section class="painel op-lista">
+        <div class="op-lista-head">
+          <div>
+            <h3>Operações cadastradas</h3>
+            <p>Consulte os detalhes e acompanhe cada atividade.</p>
+          </div>
+          <span class="op-demo">● Dados demonstrativos</span>
+        </div>
+
+        <div class="op-filtros">
+          <input
+            id="buscaOperacao"
+            type="search"
+            placeholder="Buscar operação, empresa, setor ou mineral..."
+          />
+          <select id="filtroStatus">
+            <option value="todos">Todos os status</option>
+            <option>Planejada</option>
+            <option>Em andamento</option>
+            <option>Concluída</option>
+            <option>Suspensa</option>
+          </select>
+          <select id="filtroTipo">
+            <option value="todos">Todos os tipos</option>
+            <option>Extração</option>
+            <option>Pesquisa mineral</option>
+            <option>Preparação de área</option>
+          </select>
+        </div>
+
+        <div class="op-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Operação</th>
+                <th>Empresa</th>
+                <th>Setor</th>
+                <th>Período</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaOperacoes"></tbody>
+          </table>
+        </div>
+
+        <div class="op-vazio" id="estadoVazio" hidden>
+          <strong>Nenhuma operação encontrada</strong>
+          <p>Altere os filtros ou cadastre uma nova operação.</p>
+        </div>
+
+        <div class="op-lista-foot">
+          <span id="contadorResultados"></span>
+          <span
+            >Protótipo: os dados não são salvos após atualizar a página.</span
+          >
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-logo">
+          <strong>Geo<span>MTR</span></strong
+          ><small>Gestão de Áreas de Mineração</small>
+        </div>
+        <div>
+          <p>© 2026 GeoMTR. Todos os direitos reservados.</p>
+          <small>Versão 0.6 • Ac</small>
+        </div>
+        <div class="footer-links">
+          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="terms">Termos de Uso</button>
+          <button id="suporteFooterBtn">Suporte</button>
+        </div>
+        <div class="endereco">
+          <strong>Sede Administrativa</strong>
+          <p>
+            Av. dos Minerais, 1000<br />Distrito Industrial<br />Nova Esperança
+            - MG
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Modal Operação -->
+    <div class="op-overlay" id="modalOperacao" hidden>
+      <section
+        class="op-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitulo"
+      >
+        <div class="op-modal-head">
+          <div>
+            <small>GEOMTR / OPERAÇÕES</small>
+            <h2 id="modalTitulo">Nova operação</h2>
+            <p id="modalDescricao">
+              Preencha os dados para registrar uma atividade.
+            </p>
+          </div>
+          <button id="fecharModalBtn" class="op-x" aria-label="Fechar">
+            ×
+          </button>
+        </div>
+
+        <form id="formOperacao">
+          <h3>Identificação</h3>
+          <div class="op-form-grid">
+            <label class="wide"
+              >Nome da operação *<input
+                name="nome"
+                id="nome"
+                required
+                maxlength="90"
+                placeholder="Ex.: Extração de terras raras"
+            /></label>
+            <label
+              >Tipo de atividade *
+              <select id="tipo" required>
+                <option>Extração</option>
+                <option>Pesquisa mineral</option>
+                <option>Preparação de área</option>
+              </select>
+            </label>
+            <label
+              >Empresa responsável *<input
+                id="empresa"
+                required
+                maxlength="100"
+                placeholder="Mineração Horizonte Ltda."
+            /></label>
+            <label
+              >Setor vinculado *
+              <select id="setor" required>
+                <option value="">Selecione</option>
+                <option>ST-01 — Setor Norte</option>
+                <option>ST-02 — Setor Nordeste</option>
+                <option>ST-03 — Setor Leste</option>
+                <option>ST-04 — Setor Oeste</option>
+                <option>ST-05 — Setor Sul</option>
+              </select>
+            </label>
+            <label
+              >Mineral de interesse *<input
+                id="mineral"
+                required
+                maxlength="70"
+                placeholder="Ex.: Terras raras"
+            /></label>
+          </div>
+
+          <h3>Planejamento e equipe</h3>
+          <div class="op-form-grid">
+            <label
+              >Data de início *<input id="inicio" type="date" required
+            /></label>
+            <label>Previsão de término<input id="fim" type="date" /></label>
+            <label
+              >Responsável técnico *<input
+                id="responsavel"
+                required
+                placeholder="Nome do responsável"
+            /></label>
+            <label
+              >Equipe responsável<input
+                id="equipe"
+                placeholder="Ex.: Equipe de campo A"
+            /></label>
+            <label
+              >Status inicial
+              <select id="status">
+                <option>Planejada</option>
+                <option>Em andamento</option>
+                <option>Suspensa</option>
+                <option>Concluída</option>
+              </select>
+            </label>
+          </div>
+
+          <h3>Dados de execução <small>(opcionais)</small></h3>
+          <div class="op-form-grid">
+            <label
+              >Área afetada/explorada<input
+                id="area"
+                type="number"
+                min="0"
+                step=".01"
+                placeholder="Ex.: 1250"
+            /></label>
+            <label
+              >Unidade da área
+              <select id="unidadeArea">
+                <option>m²</option>
+                <option>ha</option>
+                <option>km²</option>
+              </select>
+            </label>
+            <label
+              >Quantidade extraída<input
+                id="quantidade"
+                type="number"
+                min="0"
+                step=".01"
+                placeholder="Ex.: 320"
+            /></label>
+            <label
+              >Unidade extraída
+              <select id="unidadeQtd">
+                <option>kg</option>
+                <option>t</option>
+                <option>g</option>
+                <option>m³</option>
+              </select>
+            </label>
+            <label class="wide"
+              >Observações
+              <textarea
+                id="observacoes"
+                rows="3"
+                maxlength="600"
+                placeholder="Informações complementares..."
+              ></textarea>
+            </label>
+          </div>
+
+          <p id="erroFormulario" class="op-erro" role="alert"></p>
+
+          <div class="op-modal-actions">
+            <button type="button" class="op-secondary" id="cancelarBtn">
+              Cancelar
+            </button>
+            <button type="submit" class="op-primary">Cadastrar operação</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="op-toast" id="toast" role="status" aria-live="polite"></div>
+
+
+    <div class="modal-overlay" id="modalOverlay" onclick="fecharModalFundo(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="modal" role="document">
+        <button class="modal-fechar" type="button" onclick="fecharModal()" aria-label="Fechar janela">×</button>
+        <p class="mini-titulo">GEOMTR • ÁREA DO USUÁRIO</p>
+        <h2 id="modalTitulo">Informações</h2>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+    <script src="./operacoes.js"></script>
+    <script src="./dashboard.js"></script>
+
+    <!-- VLibras: recurso de acessibilidade em Libras -->
+    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  
+    <div class="legal-overlay" id="legalOverlay" hidden>
+      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+        <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
+        <h2 id="legalTitle">Política de Privacidade</h2>
+        <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
+        <div class="legal-content" id="legalContent"></div>
+        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+      </section>
+    </div>
+    <script src="./legal.js"></script>
+  </body>
+</html>

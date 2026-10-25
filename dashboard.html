@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoMTR | Dashboard</title>
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+
+  <body>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <span>Geo</span>MTR
+        <small>GESTÃO DE ÁREAS DE MINERAÇÃO</small>
+      </div>
+
+      <nav>
+        <a href="dashboard.html" class="nav-item ativo">
+          <span class="icone">🎛️</span>
+          Dashboard
+        </a>
+        <a href="setores.html" class="nav-item">
+          <span class="icone">📍</span>
+          Setores
+        </a>
+        <a href="operacoes.html" class="nav-item">
+          <span class="icone">⛏️</span>
+          Operações gerais
+        </a>
+        <a href="relatorios.html" class="nav-item">
+          <span class="icone">📊</span>
+          Meus Relatórios
+        </a>
+      </nav>
+
+      <div class="suporte-sidebar">
+        <strong>Suporte</strong>
+        <p>Precisa de ajuda?</p>
+        <button onclick="abrirSuporte()">Contatar administrador</button>
+      </div>
+    </aside>
+
+    <div
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <main class="conteudo">
+      <header class="topbar">
+        <button
+          class="menu-btn"
+          onclick="toggleSidebar()"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+        <div class="header-identificacao">
+          <small>PAINEL OPERACIONAL</small>
+          <strong>Dashboard operacional</strong>
+        </div>
+        <div class="topbar-direita">
+          <div class="status">
+            <span></span>
+            SISTEMA ONLINE
+          </div>
+
+          <button class="perfil-btn" onclick="togglePerfil()">
+            <div class="avatar">SO</div>
+          </button>
+
+          <div class="perfil-menu" id="perfilMenu">
+            <div class="perfil-cabecalho">
+              <div class="avatar grande">SO</div>
+              <div>
+                <strong>Samuel</strong>
+                <span>Geólogo</span>
+              </div>
+            </div>
+            <hr />
+            <button type="button" onclick="abrirPerfil()">Meu perfil</button>
+            <hr />
+            <button class="sair" onclick="sairSistema()">
+              ↪ Sair do sistema
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="boas-vindas">
+        <div>
+          <p class="mini-titulo">PAINEL OPERACIONAL</p>
+          <h1>Olá, Samuel.</h1>
+          <p>Acompanhe as áreas, operações e relatórios técnicos da GeoMTR.</p>
+        </div>
+
+        <div class="data-atual">
+          <small>DATA DO SISTEMA</small>
+          <strong id="dataAtual"></strong>
+        </div>
+      </section>
+
+      <section class="cards">
+        <button
+          class="card"
+          onclick="
+            abrirModal(
+              'Área Total',
+              'A GeoMTR possui atualmente 12,45 km² de áreas cadastradas para pesquisa e exploração mineral.',
+            )
+          "
+        >
+          <span class="card-titulo">Área total</span>
+          <strong>12,45 km²</strong>
+          <small>100% das áreas cadastradas</small>
+        </button>
+
+        <button
+          class="card"
+          onclick="
+            abrirModal(
+              'Área Minerada',
+              'Até o momento, 4,38 km² das áreas cadastradas já passaram por atividades de exploração.',
+            )
+          "
+        >
+          <span class="card-titulo">Área minerada</span>
+          <strong>4,38 km²</strong>
+          <small>35,2% da área total</small>
+        </button>
+
+        <button
+          class="card"
+          onclick="
+            abrirModal(
+              'Em Operação',
+              'Atualmente existem setores com operações de pesquisa ou exploração em andamento.',
+            )
+          "
+        >
+          <span class="card-titulo">Em operação</span>
+          <strong>2,15 km²</strong>
+          <small>17,3% da área total</small>
+        </button>
+
+        <button
+          class="card"
+          onclick="
+            abrirModal(
+              'Área Restante',
+              'A GeoMTR possui 8,07 km² que ainda não foram classificados como área minerada.',
+            )
+          "
+        >
+          <span class="card-titulo">Área restante</span>
+          <strong>8,07 km²</strong>
+          <small>64,8% da área total</small>
+        </button>
+      </section>
+
+      <section class="grid-principal">
+        <article class="painel mapa-painel" id="mapaPainel">
+          <div class="painel-header">
+            <div>
+              <h2>Mapa de Setores</h2>
+              <p>Situação atual das áreas monitoradas.</p>
+            </div>
+            <button class="botao-secundario" onclick="expandirMapa()">
+              ⛶ Expandir
+            </button>
+          </div>
+
+          <div class="mapa">
+            <div class="grade-mapa"></div>
+            <button
+              class="setor setor-verde setor-1"
+              onclick="
+                abrirSetor(
+                  'ST-01',
+                  'Setor Norte',
+                  'Sem extração',
+                  '0%',
+                  '850 m²',
+                  'Mariana Costa',
+                )
+              "
+            >
+              ST-01
+            </button>
+            <button
+              class="setor setor-azul setor-2"
+              onclick="
+                abrirSetor(
+                  'ST-02',
+                  'Setor Nordeste',
+                  'Baixa extração',
+                  '24%',
+                  '720 m²',
+                  'Samuel Oliveira',
+                )
+              "
+            >
+              ST-02
+            </button>
+            <button
+              class="setor setor-laranja setor-3"
+              onclick="
+                abrirSetor(
+                  'ST-03',
+                  'Setor Leste',
+                  'Extração moderada',
+                  '56%',
+                  '910 m²',
+                  'Samuel Oliveira',
+                )
+              "
+            >
+              ST-03
+            </button>
+            <button
+              class="setor setor-vermelho setor-4"
+              onclick="
+                abrirSetor(
+                  'ST-04',
+                  'Setor Oeste',
+                  'Alta extração',
+                  '82%',
+                  '840 m²',
+                  'Carlos Mendes',
+                )
+              "
+            >
+              ST-04
+            </button>
+            <button
+              class="setor setor-cinza setor-5"
+              onclick="
+                abrirSetor(
+                  'ST-05',
+                  'Setor Sul',
+                  'Em análise',
+                  '—',
+                  '630 m²',
+                  'Fernanda Lima',
+                )
+              "
+            >
+              ST-05
+            </button>
+
+            <div class="legenda">
+              <div><span class="verde"></span>Sem extração</div>
+              <div><span class="azul"></span>Baixa extração</div>
+              <div><span class="laranja"></span>Extração moderada</div>
+              <div><span class="vermelho"></span>Alta extração</div>
+              <div><span class="cinza"></span>Em análise</div>
+            </div>
+          </div>
+        </article>
+
+        <aside class="painel resumo">
+          <div class="painel-header">
+            <div>
+              <h2>Meu mês</h2>
+              <p>Outubro / 2026</p>
+            </div>
+          </div>
+
+          <button
+            class="resumo-item"
+            onclick="
+              abrirModal(
+                'Meus Relatórios',
+                'Você realizou 8 relatórios técnicos durante o mês de outubro.',
+              )
+            "
+          >
+            <span>Relatórios realizados</span>
+            <strong>8</strong>
+            <small>+33% em relação ao mês anterior</small>
+          </button>
+
+          <button
+            class="resumo-item"
+            onclick="
+              abrirModal(
+                'Setores avaliados',
+                'Você realizou avaliações em 5 setores diferentes neste mês.',
+              )
+            "
+          >
+            <span>Setores avaliados</span>
+            <strong>5</strong>
+            <small>de 18 setores cadastrados</small>
+          </button>
+
+          <button
+            class="resumo-item"
+            onclick="
+              abrirSetor(
+                'ST-03',
+                'Setor Leste',
+                'Extração moderada',
+                '56%',
+                '910 m²',
+                'Samuel Oliveira',
+              )
+            "
+          >
+            <span>Última avaliação</span>
+            <strong>01/10</strong>
+            <small>ST-03 • Setor Leste</small>
+          </button>
+        </aside>
+      </section>
+
+      <section class="grid-inferior">
+        <article class="painel">
+          <div class="painel-header">
+            <div>
+              <h2>Meus Últimos Relatórios</h2>
+              <p>Atividades técnicas recentes.</p>
+            </div>
+
+            <a href="relatorios.html" class="link-btn">Ver todas →</a>
+          </div>
+
+          <div class="tabela-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Setor</th>
+                  <th>Tipo</th>
+                  <th>Responsável</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>01/10/2026</td>
+                  <td>ST-03</td>
+                  <td>Geológica</td>
+                  <td>Samuel Sousa</td>
+                  <td>
+                    <span class="tag concluido"> Concluído </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>28/09/2026</td>
+                  <td>ST-02</td>
+                  <td>Geológica</td>
+                  <td>Samuel Sousa</td>
+                  <td>
+                    <span class="tag concluido"> Concluído </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>25/09/2026</td>
+                  <td>ST-04</td>
+                  <td>Geológica</td>
+                  <td>Samuel Sousa</td>
+                  <td>
+                    <span class="tag analise"> Em análise </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="painel distribuicao">
+          <div class="painel-header">
+            <div>
+              <h2>Distribuição dos Setores</h2>
+              <p>Classificação por nível de exploração.</p>
+            </div>
+          </div>
+
+          <div class="grafico-area">
+            <div class="grafico">
+              <div class="grafico-centro">
+                <strong>18</strong>
+                <span>Setores</span>
+              </div>
+            </div>
+
+            <div class="grafico-legenda">
+              <p><span class="verde"></span>Sem extração<strong>6</strong></p>
+              <p><span class="azul"></span>Baixa<strong>4</strong></p>
+              <p><span class="laranja"></span>Moderada<strong>3</strong></p>
+              <p><span class="vermelho"></span>Alta<strong>3</strong></p>
+              <p><span class="cinza"></span>Em análise<strong>2</strong></p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <div class="footer-logo">
+          <strong>Geo<span>MTR</span></strong>
+          <small>Gestão de Áreas de Mineração</small>
+        </div>
+        <div>
+          <p>© 2026 GeoMTR. Todos os direitos reservados.</p>
+          <small>Versão 0.5 • Ac</small>
+        </div>
+        <div class="footer-links">
+          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="terms">Termos de Uso</button>
+          <button type="button" onclick="abrirSuporte()">Suporte</button>
+        </div>
+        <div class="endereco">
+          <strong>Sede Administrativa</strong>
+          <p>
+            Av. dos Minerais, 1000<br />Distrito Industrial<br />Nova Esperança
+            - MG
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="fecharModalFundo(event)"
+    >
+      <div class="modal">
+        <button class="modal-fechar" onclick="fecharModal()">×</button>
+        <p class="mini-titulo">GEOMTR</p>
+        <h2 id="modalTitulo">Informações</h2>
+        <div id="modalConteudo"></div>
+      </div>
+    </div>
+
+    <script src="./dashboard.js"></script>
+
+    <!-- VLibras: recurso de acessibilidade em Libras -->
+    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  
+    <div class="legal-overlay" id="legalOverlay" hidden>
+      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+        <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
+        <h2 id="legalTitle">Política de Privacidade</h2>
+        <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
+        <div class="legal-content" id="legalContent"></div>
+        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+      </section>
+    </div>
+    <script src="./legal.js"></script>
+  </body>
+</html>
