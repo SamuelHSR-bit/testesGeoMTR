@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>GeoMTR | Setores</title>
     <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="setores.css" />
   </head>
   <body>
     <aside class="sidebar" id="sidebar">
@@ -44,7 +45,10 @@
         >
           ☰
         </button>
-        <div class="header-identificacao"><small>GESTÃO TERRITORIAL / MONITORAMENTO</small><strong>Setores operacionais</strong></div>
+        <div class="header-identificacao">
+          <small>GESTÃO TERRITORIAL / MONITORAMENTO</small
+          ><strong>Setores operacionais</strong>
+        </div>
         <div class="topbar-direita">
           <div class="status"><span></span>SISTEMA ONLINE</div>
           <button
@@ -77,27 +81,35 @@
               Visualize a distribuição dos setores, acompanhe avaliações
               técnicas e consulte a condição de cada área antes de planejar
               novas atividades. O mapa abaixo é esquemático e serve para
-              visualização esquemática; as formas não representam coordenadas geográficas
-              reais.
+              visualização esquemática; as formas não representam coordenadas
+              geográficas reais.
             </p>
           </div>
         </section>
         <section class="setores-kpis">
           <article class="setor-kpi">
-            <small>Setores cadastrados</small><strong>18</strong
-            ><span>Áreas monitoradas</span>
+            <span class="emoji">📍</span>
+            <small>Setores cadastrados</small>
+            <strong>18</strong>
+            <span>Áreas monitoradas</span>
           </article>
           <article class="setor-kpi">
-            <small>Avaliações técnicas</small><strong>42</strong
-            ><span>Registros cadastrados</span>
+            <span class="emoji">📊</span>
+            <small>Avaliações técnicas</small>
+            <strong>42</strong>
+            <span>Registros cadastrados</span>
           </article>
           <article class="setor-kpi">
-            <small>Áreas aptas / favoráveis</small><strong>10</strong
-            ><span>Requerem validação técnica</span>
+            <span class="emoji">✅</span>
+            <small>Áreas aptas / favoráveis</small>
+            <strong>10</strong>
+            <span>Requerem validação técnica</span>
           </article>
           <article class="setor-kpi">
-            <small>Em análise / atenção</small><strong>8</strong
-            ><span>Necessitam de acompanhamento</span>
+            <span class="emoji">⚠️</span>
+            <small>Em análise / atenção</small>
+            <strong>8</strong>
+            <span>Necessitam de acompanhamento</span>
           </article>
         </section>
         <section class="setores-layout">
@@ -169,8 +181,8 @@
               </div>
             </div>
             <p class="setor-mapa-note">
-              Mapa esquemático. As formas representam setores
-              fictícios e não correspondem a limites geográficos oficiais.
+              Mapa esquemático. As formas representam setores fictícios e não
+              correspondem a limites geográficos oficiais.
             </p>
           </article>
           <aside class="setor-panel">
@@ -263,8 +275,9 @@
             </table>
           </div>
           <p class="setor-mapa-note">
-            Os dados apresentados devem ser conferidos com os registros técnicos oficiais antes de orientar decisões. Não representam
-            recomendações reais de mineração.
+            Os dados apresentados devem ser conferidos com os registros técnicos
+            oficiais antes de orientar decisões. Não representam recomendações
+            reais de mineração.
           </p>
         </section>
       </div>
@@ -278,7 +291,9 @@
           <small>Versão 0.7 • Ac</small>
         </div>
         <div class="footer-links">
-          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="privacy">
+            Política de Privacidade
+          </button>
           <button type="button" data-legal="terms">Termos de Uso</button>
           <button type="button" onclick="abrirSuporte()">Suporte</button>
         </div>
@@ -473,15 +488,29 @@
     <script>
       new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
-  
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Atualizado em outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
     <script src="./legal.js"></script>

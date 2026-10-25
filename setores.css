@@ -1,0 +1,37 @@
+.setor-kpi {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 16px; /* Espaço entre o ícone e os textos */
+}
+
+/* Cria a caixa com fundo suave e centraliza o emoji */
+.setor-kpi .emoji {
+  grid-column: 1;
+  grid-row: 1 / span 3; /* Faz a caixa ocupar a altura das 3 linhas de texto */
+
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #edf4ee; 
+  font-size: 22px;
+  line-height: 1;
+}
+
+/*  cada texto fique na sua respectiva linha da segunda coluna */
+.setor-kpi small {
+  grid-column: 2;
+  grid-row: 1;
+}
+.setor-kpi strong {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 4px 0;
+}
+.setor-kpi span:not(.emoji) {
+  grid-column: 2;
+  grid-row: 3;
+}
