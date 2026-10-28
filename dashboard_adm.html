@@ -19,7 +19,7 @@
           <span class="icone">🎛️</span>
           Dashboard
         </a>
-        <a href="setores.html?perfil=admin" class="nav-item">
+        <a href="setores-adm.html" class="nav-item">
           <span class="icone">📍</span>
           Setores
         </a>
@@ -168,97 +168,71 @@
           <div class="painel-header">
             <div>
               <h2>Mapa de Setores</h2>
-              <p>Situação atual das áreas monitoradas.</p>
+              <p>
+                Situação atual das áreas monitoradas. Selecione um setor para
+                consultar os detalhes.
+              </p>
             </div>
-            <button class="botao-secundario" onclick="expandirMapa()">
-              ⛶ Expandir
+            <button
+                class="botao-principal"
+                type="button"
+                onclick="expandirMapa()"
+              >
+                ⛶ Expandir mapa
+              </button>
+              
             </button>
           </div>
 
-          <div class="mapa">
+          <div class="mapa" id="mapaSetoresViewport">
             <div class="grade-mapa"></div>
             <button
               class="setor setor-verde setor-1"
-              onclick="
-                abrirSetor(
-                  'ST-01',
-                  'Setor Norte',
-                  'Sem extração',
-                  '0%',
-                  '850 m²',
-                  'Mariana Costa',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-01')"
+              aria-label="Consultar setor ST-01"
             >
               ST-01
             </button>
             <button
               class="setor setor-azul setor-2"
-              onclick="
-                abrirSetor(
-                  'ST-02',
-                  'Setor Nordeste',
-                  'Baixa extração',
-                  '24%',
-                  '720 m²',
-                  'Samuel Oliveira',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-02')"
+              aria-label="Consultar setor ST-02"
             >
               ST-02
             </button>
             <button
               class="setor setor-laranja setor-3"
-              onclick="
-                abrirSetor(
-                  'ST-03',
-                  'Setor Leste',
-                  'Extração moderada',
-                  '56%',
-                  '910 m²',
-                  'Samuel Oliveira',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-03')"
+              aria-label="Consultar setor ST-03"
             >
               ST-03
             </button>
             <button
               class="setor setor-vermelho setor-4"
-              onclick="
-                abrirSetor(
-                  'ST-04',
-                  'Setor Oeste',
-                  'Alta extração',
-                  '82%',
-                  '840 m²',
-                  'Carlos Mendes',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-04')"
+              aria-label="Consultar setor ST-04"
             >
               ST-04
             </button>
             <button
               class="setor setor-cinza setor-5"
-              onclick="
-                abrirSetor(
-                  'ST-05',
-                  'Setor Sul',
-                  'Em análise',
-                  '—',
-                  '630 m²',
-                  'Fernanda Lima',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-05')"
+              aria-label="Consultar setor ST-05"
             >
               ST-05
             </button>
 
             <div class="legenda">
-              <div><span class="verde"></span>Sem extração</div>
-              <div><span class="azul"></span>Baixa extração</div>
-              <div><span class="laranja"></span>Extração moderada</div>
-              <div><span class="vermelho"></span>Alta extração</div>
-              <div><span class="cinza"></span>Em análise</div>
+              <div><span class="verde"></span>Mariana</div>
+              <div><span class="azul"></span>Serra Azul</div>
+              <div><span class="laranja"></span>Vale Central</div>
+              <div><span class="vermelho"></span>Campo Sul</div>
+              <div><span class="cinza"></span>Serra Norte</div>
             </div>
           </div>
         </article>
@@ -414,7 +388,9 @@
           <small>Versão 0.5 • Ac</small>
         </div>
         <div class="footer-links">
-          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="privacy">
+            Política de Privacidade
+          </button>
           <button type="button" data-legal="terms">Termos de Uso</button>
           <button type="button" onclick="abrirSuporte()">Suporte</button>
         </div>
@@ -442,20 +418,40 @@
     </div>
 
     <script src="./dashboard.js"></script>
+    <script src="./setores.js"></script>
 
     <!-- VLibras: recurso de acessibilidade em Libras -->
-    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
-  
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
     <script src="./legal.js"></script>

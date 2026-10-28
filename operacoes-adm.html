@@ -16,20 +16,17 @@
         <a class="nav-item" href="./dashboard_adm.html"
           ><span class="icone">🎛️</span>Dashboard</a
         >
-        <a class="nav-item" href="./setores.html"
+        <a class="nav-item" href="./setores-adm.html"
           ><span class="icone">📍</span>Setores</a
         >
-        <a
-          class="nav-item ativo"
-          href="./operacoes-adm.html"
-          aria-current="page"
-          ><span class="icone">⛏️</span>Operações gerais</a
-        >
+        <a class="nav-item ativo" href="./operacoes-adm.html" aria-current="page">
+          <span class="icone">⛏️</span>Operações gerais</a>
+
         <a class="nav-item" href="./relatorios-gerais.html"
           ><span class="icone">📊</span>Relatórios gerais</a
         >
-        <a class="nav-item admin-item" href="./funcionarios.html"
-          ><span class="icone">👤</span>Funcionários</a
+        <a class="nav-item admin-item" href="./funcionarios.html">
+          <span class="icone">👤</span>Funcionários</a
         >
       </nav>
       <div class="suporte-sidebar">
@@ -48,15 +45,15 @@
     <main class="conteudo">
       <header class="topbar">
         <button
-            class="menu-btn"
-            id="menuBtn"
-            onclick="toggleSidebar()"
-            aria-label="Abrir menu"
-            aria-expanded="false"
-            type="button"
-          >
-            ☰
-          </button>
+          class="menu-btn"
+          id="menuBtn"
+          onclick="toggleSidebar()"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          type="button"
+        >
+          ☰
+        </button>
         <div class="header-identificacao">
           <small>GESTÃO ADMINISTRATIVA / OPERAÇÕES</small>
           <strong>Operações gerais</strong>
@@ -208,7 +205,9 @@
           <small>Versão 0.6 • Ac</small>
         </div>
         <div class="footer-links">
-          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="privacy">
+            Política de Privacidade
+          </button>
           <button type="button" data-legal="terms">Termos de Uso</button>
           <button id="suporteFooterBtn">Suporte</button>
         </div>
@@ -377,10 +376,23 @@
 
     <div class="op-toast" id="toast" role="status" aria-live="polite"></div>
 
-
-    <div class="modal-overlay" id="modalOverlay" onclick="fecharModalFundo(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="fecharModalFundo(event)"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitulo"
+    >
       <div class="modal" role="document">
-        <button class="modal-fechar" type="button" onclick="fecharModal()" aria-label="Fechar janela">×</button>
+        <button
+          class="modal-fechar"
+          type="button"
+          onclick="fecharModal()"
+          aria-label="Fechar janela"
+        >
+          ×
+        </button>
         <p class="mini-titulo">GEOMTR • ÁREA DO USUÁRIO</p>
         <h2 id="modalTitulo">Informações</h2>
         <div id="modalConteudo"></div>
@@ -390,18 +402,37 @@
     <script src="./dashboard.js"></script>
 
     <!-- VLibras: recurso de acessibilidade em Libras -->
-    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
-  
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
     <script src="./legal.js"></script>

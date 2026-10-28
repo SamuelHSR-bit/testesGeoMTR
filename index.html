@@ -107,22 +107,34 @@
 
         <footer class="login-footer">
           <span>GeoMTR</span><span>v0.5</span><span>Ac</span>
-          <span class="login-legal-links"><button type="button" data-legal="privacy">Política de Privacidade</button><button type="button" data-legal="terms">Termos de Uso</button></span>
         </footer>
       </section>
     </main>
     <script src="./login.js"></script>
-  
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
-    <script src="./legal.js"></script>
   </body>
 </html>

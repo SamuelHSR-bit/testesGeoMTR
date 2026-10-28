@@ -60,7 +60,8 @@ function abrirModal(titulo, texto) {
   const c = document.getElementById("modalConteudo");
 
   if (t) t.textContent = titulo;
-  if (c) c.innerHTML = /<\/?[a-z][\s\S]*>/i.test(texto) ? texto : `<p>${texto}</p>`;
+  if (c)
+    c.innerHTML = /<\/?[a-z][\s\S]*>/i.test(texto) ? texto : `<p>${texto}</p>`;
   if (modal) modal.classList.add("aberto");
 }
 
@@ -136,21 +137,21 @@ function abrirSuporte() {
     <p class="geo-notice">Protótipo acadêmico: ramal e e-mail são dados demonstrativos, não canais reais de atendimento.</p>`;
   abrirModal("Contatar administrador", conteudo);
 }
-
+// abrir modal de perfil.... ARRUMAR ESSA PORRA SEU MERDA PELO AMOR DE DEUS//
 function abrirPerfil() {
   const conteudo = `
     <form class="geo-profile-form" id="formPerfil" onsubmit="salvarPerfil(event)">
       <div class="geo-profile-head">
         <label class="geo-photo-upload" for="fotoPerfilInput"><span id="fotoPerfilPreview">SO</span><small>Alterar foto</small></label>
         <input id="fotoPerfilInput" type="file" accept="image/*" onchange="previewFotoPerfil(event)" hidden>
-        <div><h3 id="perfilNomeResumo">Samuel Oliveira</h3><p>Geólogo • Matrícula GEO-001</p><span class="geo-status-pill">● Conta ativa</span></div>
+        <div><h3 id="perfilNomeResumo">Samuel Sousa</h3><p>Admin • Matrícula ADM-001</p><span class="geo-status-pill">● Conta ativa</span></div>
       </div>
       <div class="geo-form-grid">
-        <label>Nome completo<input id="perfilNome" value="Samuel Oliveira" required maxlength="80"></label>
-        <label>Cargo / função<input id="perfilCargo" value="Geólogo" required maxlength="60"></label>
-        <label>Idade<input id="perfilIdade" type="number" min="18" max="100" value="19" required></label>
+        <label>Nome completo<input id="perfilNome" value="Samuel Sousa" required maxlength="80"></label>
+        <label>Cargo / função<input id="perfilCargo" value="Dev/TI" required maxlength="60"></label>
+        <label>Idade<input id="perfilIdade" type="number" min="18" max="100" value="20" required></label>
         <label>Documento (demonstração)<input value="Não cadastrado" disabled><small>Documento real não deve ser exposto no protótipo.</small></label>
-        <label>Matrícula<input value="GEO-001" disabled></label>
+        <label>Matrícula<input value="ADM-001" disabled></label>
         <label>Admissão<input type="date" value="2025-05-19" disabled></label>
         <label class="geo-field-full">E-mail<input id="perfilEmail" type="email" value="samuel@geomtr.local" required></label>
       </div>
@@ -158,38 +159,56 @@ function abrirPerfil() {
       <p class="geo-notice">As alterações ficam apenas nesta sessão/demonstração e não são salvas em banco de dados.</p>
     </form>`;
   abrirModal("Meu perfil", conteudo);
-  const admissao = new Date('2025-05-19T12:00:00');
+  const admissao = new Date("2025-05-19T12:00:00");
   const hoje = new Date();
-  let meses = (hoje.getFullYear()-admissao.getFullYear())*12 + hoje.getMonth()-admissao.getMonth();
+  let meses =
+    (hoje.getFullYear() - admissao.getFullYear()) * 12 +
+    hoje.getMonth() -
+    admissao.getMonth();
   if (hoje.getDate() < admissao.getDate()) meses--;
-  const anos = Math.floor(Math.max(0, meses)/12), resto = Math.max(0, meses)%12;
-  const tempo = document.getElementById('tempoEmpresa');
-  if (tempo) tempo.textContent = `${anos ? anos+' ano(s) e ' : ''}${resto} mês(es) (desde 19/05/2025)`;
+  const anos = Math.floor(Math.max(0, meses) / 12),
+    resto = Math.max(0, meses) % 12;
+  const tempo = document.getElementById("tempoEmpresa");
+  if (tempo)
+    tempo.textContent = `${anos ? anos + " ano(s) e " : ""}${resto} mês(es) (desde 19/05/2025)`;
 }
 
 function previewFotoPerfil(event) {
   const file = event.target.files && event.target.files[0];
   if (!file) return;
-  if (!file.type.startsWith('image/')) return;
+  if (!file.type.startsWith("image/")) return;
   const reader = new FileReader();
   reader.onload = () => {
-    const preview = document.getElementById('fotoPerfilPreview');
-    if (preview) { preview.textContent = ''; preview.style.backgroundImage = `url(${reader.result})`; preview.style.backgroundSize = 'cover'; preview.style.backgroundPosition = 'center'; }
+    const preview = document.getElementById("fotoPerfilPreview");
+    if (preview) {
+      preview.textContent = "";
+      preview.style.backgroundImage = `url(${reader.result})`;
+      preview.style.backgroundSize = "cover";
+      preview.style.backgroundPosition = "center";
+    }
   };
   reader.readAsDataURL(file);
 }
 
 function salvarPerfil(event) {
   event.preventDefault();
-  const nome = document.getElementById('perfilNome')?.value.trim();
-  const cargo = document.getElementById('perfilCargo')?.value.trim();
+  const nome = document.getElementById("perfilNome")?.value.trim();
+  const cargo = document.getElementById("perfilCargo")?.value.trim();
   if (!nome || !cargo) return;
-  document.querySelectorAll('.perfil-cabecalho strong').forEach(el => el.textContent = nome.split(' ')[0]);
-  document.querySelectorAll('.perfil-cabecalho span').forEach(el => el.textContent = cargo);
-  const resumo = document.getElementById('perfilNomeResumo');
+  document
+    .querySelectorAll(".perfil-cabecalho strong")
+    .forEach((el) => (el.textContent = nome.split(" ")[0]));
+  document
+    .querySelectorAll(".perfil-cabecalho span")
+    .forEach((el) => (el.textContent = cargo));
+  const resumo = document.getElementById("perfilNomeResumo");
   if (resumo) resumo.textContent = nome;
-  const modalConteudo = document.getElementById('modalConteudo');
-  if (modalConteudo) modalConteudo.insertAdjacentHTML('beforeend','<p class="geo-success" role="status">✓ Alterações aplicadas nesta demonstração.</p>');
+  const modalConteudo = document.getElementById("modalConteudo");
+  if (modalConteudo)
+    modalConteudo.insertAdjacentHTML(
+      "beforeend",
+      '<p class="geo-success" role="status">✓ Alterações aplicadas nesta demonstração.</p>',
+    );
 }
 
 document.addEventListener("keydown", function (event) {

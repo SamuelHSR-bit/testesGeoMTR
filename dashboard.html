@@ -249,11 +249,11 @@
             </button>
 
             <div class="legenda">
-              <div><span class="verde"></span>Sem extração</div>
-              <div><span class="azul"></span>Baixa extração</div>
-              <div><span class="laranja"></span>Extração moderada</div>
-              <div><span class="vermelho"></span>Alta extração</div>
-              <div><span class="cinza"></span>Em análise</div>
+              <div><span class="verde"></span>Mariana</div>
+              <div><span class="azul"></span>Serra Azul</div>
+              <div><span class="laranja"></span>Vale Central</div>
+              <div><span class="vermelho"></span>Campo Sul</div>
+              <div><span class="cinza"></span>Serra Norte</div>
             </div>
           </div>
         </article>
@@ -409,7 +409,9 @@
           <small>Versão 0.5 • Ac</small>
         </div>
         <div class="footer-links">
-          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="privacy">
+            Política de Privacidade
+          </button>
           <button type="button" data-legal="terms">Termos de Uso</button>
           <button type="button" onclick="abrirSuporte()">Suporte</button>
         </div>
@@ -439,18 +441,37 @@
     <script src="./dashboard.js"></script>
 
     <!-- VLibras: recurso de acessibilidade em Libras -->
-    <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
-  
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
     <script src="./legal.js"></script>
