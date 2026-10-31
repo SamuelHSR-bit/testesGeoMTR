@@ -170,80 +170,45 @@
             </button>
           </div>
 
-          <div class="mapa">
+          <div class="mapa" id="mapaSetoresViewport">
             <div class="grade-mapa"></div>
             <button
               class="setor setor-verde setor-1"
-              onclick="
-                abrirSetor(
-                  'ST-01',
-                  'Setor Norte',
-                  'Sem extração',
-                  '0%',
-                  '850 m²',
-                  'Mariana Costa',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-01')"
+              aria-label="Consultar setor ST-01"
             >
               ST-01
             </button>
             <button
               class="setor setor-azul setor-2"
-              onclick="
-                abrirSetor(
-                  'ST-02',
-                  'Setor Nordeste',
-                  'Baixa extração',
-                  '24%',
-                  '720 m²',
-                  'Samuel Oliveira',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-02')"
+              aria-label="Consultar setor ST-02"
             >
               ST-02
             </button>
             <button
               class="setor setor-laranja setor-3"
-              onclick="
-                abrirSetor(
-                  'ST-03',
-                  'Setor Leste',
-                  'Extração moderada',
-                  '56%',
-                  '910 m²',
-                  'Samuel Oliveira',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-03')"
+              aria-label="Consultar setor ST-03"
             >
               ST-03
             </button>
             <button
               class="setor setor-vermelho setor-4"
-              onclick="
-                abrirSetor(
-                  'ST-04',
-                  'Setor Oeste',
-                  'Alta extração',
-                  '82%',
-                  '840 m²',
-                  'Carlos Mendes',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-04')"
+              aria-label="Consultar setor ST-04"
             >
               ST-04
             </button>
             <button
               class="setor setor-cinza setor-5"
-              onclick="
-                abrirSetor(
-                  'ST-05',
-                  'Setor Sul',
-                  'Em análise',
-                  '—',
-                  '630 m²',
-                  'Fernanda Lima',
-                )
-              "
+              type="button"
+              onclick="detalheSetor('ST-05')"
+              aria-label="Consultar setor ST-05"
             >
               ST-05
             </button>
@@ -439,6 +404,7 @@
     </div>
 
     <script src="./dashboard.js"></script>
+    <script src="./setores.js"></script>
 
     <!-- VLibras: recurso de acessibilidade em Libras -->
     <div vw class="enabled">

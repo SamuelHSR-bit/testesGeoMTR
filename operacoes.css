@@ -572,11 +572,34 @@
 }
 @media (max-width: 430px) {
   .pagina-operacoes .op-stats {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
   }
+
   .pagina-operacoes .op-stats article {
-    align-items: flex-start;
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 12px;
+  }
+
+  .pagina-operacoes .op-stats article > span {
+    display: grid;
+    place-items: center;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .pagina-operacoes .op-stats article > div {
+    min-width: 0;
+  }
+
+  .pagina-operacoes .op-stats strong {
+    font-size: 20px;
   }
 }
 /* Alternância entre as visões, mantendo o padrão visual GeoMTR */
@@ -681,24 +704,89 @@
   }
 }
 
-
 /* Ajustes de layout GeoMTR */
 
 /* Rodapé no fim da página e identificação no cabeçalho */
-body.pagina-operacoes .conteudo { min-height: 100vh; display: flex; flex-direction: column; }
-body.pagina-operacoes .conteudo > footer { margin-top: auto; width: 100%; flex-shrink: 0; }
-.header-identificacao { display: flex; flex-direction: column; justify-content: center; gap: 3px; min-width: 0; margin-left: 14px; }
-.header-identificacao small { color: #7b857d; font-size: 9px; letter-spacing: 1px; line-height: 1.2; }
-.header-identificacao strong { color: #182019; font-size: 14px; line-height: 1.25; font-weight: 600; }
-body.pagina-operacoes .topbar { justify-content: flex-start; }
-body.pagina-operacoes .topbar-direita { margin-left: auto; }
-
+body.pagina-operacoes .conteudo {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body.pagina-operacoes .conteudo > footer {
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0;
+}
+.header-identificacao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  margin-left: 14px;
+}
+.header-identificacao small {
+  color: #7b857d;
+  font-size: 9px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.header-identificacao strong {
+  color: #182019;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+body.pagina-operacoes .topbar {
+  justify-content: flex-start;
+}
+body.pagina-operacoes .topbar-direita {
+  margin-left: auto;
+}
 
 /* Identificação padronizada do cabeçalho e rodapé alinhado ao final do conteúdo */
-.header-identificacao { display:flex; flex-direction:column; justify-content:center; gap:3px; min-width:0; margin-left:12px; }
-.header-identificacao small { color:#7b857d; font-size:9px; letter-spacing:1px; line-height:1.2; }
-.header-identificacao strong { color:#182019; font-size:14px; line-height:1.25; font-weight:600; }
-.conteudo { min-height:100vh; display:flex; flex-direction:column; }
-.conteudo > footer { margin-top:auto; width:100%; flex-shrink:0; }
-.topbar-direita { margin-left:auto; }
-@media (max-width:600px) { .header-identificacao { margin-left:8px; } .header-identificacao small { font-size:8px; letter-spacing:.5px; } .header-identificacao strong { font-size:12px; } }
+.header-identificacao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  margin-left: 12px;
+}
+.header-identificacao small {
+  color: #7b857d;
+  font-size: 9px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.header-identificacao strong {
+  color: #182019;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.conteudo {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.conteudo > footer {
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0;
+}
+.topbar-direita {
+  margin-left: auto;
+}
+@media (max-width: 600px) {
+  .header-identificacao {
+    margin-left: 8px;
+  }
+  .header-identificacao small {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .header-identificacao strong {
+    font-size: 12px;
+  }
+}
