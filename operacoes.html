@@ -106,7 +106,7 @@
 
       <section class="op-stats">
         <article>
-          <span>⛏</span>
+          <span>⛏️</span>
           <div>
             <small>Total de operações</small
             ><strong id="totalOperacoes">0</strong
@@ -114,21 +114,21 @@
           </div>
         </article>
         <article>
-          <span class="verde">▶</span>
+          <span class="verde">▶️</span>
           <div>
             <small>Em andamento</small><strong id="totalAndamento">0</strong
             ><small>Atividades ativas</small>
           </div>
         </article>
         <article>
-          <span class="laranja">◷</span>
+          <span class="laranja">🗓️</span>
           <div>
             <small>Planejadas</small><strong id="totalPlanejadas">0</strong
             ><small>Aguardando início</small>
           </div>
         </article>
         <article>
-          <span class="cinza">✓</span>
+          <span class="cinza">✅</span>
           <div>
             <small>Concluídas</small><strong id="totalConcluidas">0</strong
             ><small>Atividades encerradas</small>
@@ -205,7 +205,9 @@
           <small>Versão 0.6 • Ac</small>
         </div>
         <div class="footer-links">
-          <button type="button" data-legal="privacy">Política de Privacidade</button>
+          <button type="button" data-legal="privacy">
+            Política de Privacidade
+          </button>
           <button type="button" data-legal="terms">Termos de Uso</button>
           <button id="suporteFooterBtn">Suporte</button>
         </div>
@@ -255,15 +257,29 @@
     <script>
       new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
-  
+
     <div class="legal-overlay" id="legalOverlay" hidden>
-      <section class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-        <button type="button" class="legal-close" id="legalClose" aria-label="Fechar">×</button>
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="legalTitle"
+      >
+        <button
+          type="button"
+          class="legal-close"
+          id="legalClose"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
         <div class="legal-eyebrow">GEOMTR • DOCUMENTOS DO SISTEMA</div>
         <h2 id="legalTitle">Política de Privacidade</h2>
         <p class="legal-updated">Versão demonstrativa • Outubro de 2026</p>
         <div class="legal-content" id="legalContent"></div>
-        <div class="legal-actions"><button type="button" id="legalCloseBottom">Entendi</button></div>
+        <div class="legal-actions">
+          <button type="button" id="legalCloseBottom">Entendi</button>
+        </div>
       </section>
     </div>
     <script src="./legal.js"></script>

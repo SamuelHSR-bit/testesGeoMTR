@@ -152,16 +152,13 @@
   font-size: 17px;
 }
 .pagina-operacoes .op-stats article > span.verde {
-  background: #e5f2e8;
-  color: #367344;
+  background: #edf1ee;
 }
 .pagina-operacoes .op-stats article > span.laranja {
-  background: #fff1dc;
-  color: #a86c1b;
+  background: #edf1ee;
 }
 .pagina-operacoes .op-stats article > span.cinza {
-  background: #edf0ee;
-  color: #69736c;
+  background: #edf1ee;
 }
 .pagina-operacoes .op-stats small {
   display: block;
